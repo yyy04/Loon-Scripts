@@ -3,11 +3,12 @@
 @Name：WeTalk 自动化签到+视频奖励
 @Author：TG@ZenMoFiShi
 
-[rewrite_local]
-^https:\/\/api\.wetalkapp\.com\/app\/queryBalanceAndBonus url script-request-header https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/WeTalk.js
+[Script]
+http-request ^https:\/\/api\.wetalkapp\.com\/app\/
+script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/WeTalk.js, requires-body=true, timeout=10, tag=WeTalk获取Cookie 
 
-[task_local]
-20 8,20 * * * https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/WeTalk.js, tag=WeTalk签到, enabled=true
+[Cron]
+cron "30 8,20 * * *" script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/PingMe_Loon.js, timeout=60, tag=WwTalk签到
 
 [MITM]
 hostname = api.wetalkapp.com
