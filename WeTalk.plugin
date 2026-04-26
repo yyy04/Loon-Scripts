@@ -1,0 +1,14 @@
+#!name=WeTalk 自动化签到
+#!desc=WeTalk 每日自动签到与观看视频奖励。请先进入 App 获取 Token。
+#!author=ZenMoFiShi
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Task.png
+
+[Script]
+# 获取 Token
+http-request ^https:\/\/api\.wetalkapp\.com\/app\/queryBalanceAndBonus script-path=https://raw.githubusercontent.com/yyy04/Loon-Scripts/refs/heads/main/WeTalk.js, requires-body=true, timeout=10, tag=WeTalk获取Token
+
+# 定时签到 (每天 08:20 和 20:20 运行)
+cron "20 8,20 * * *" script-path=https://raw.githubusercontent.com/yyy04/Loon-Scripts/refs/heads/main/WeTalk.js, timeout=60, tag=WeTalk签到
+
+[MITM]
+hostname = api.wetalkapp.com
